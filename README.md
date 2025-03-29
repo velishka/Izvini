@@ -1,1 +1,117 @@
-# Izvini
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Извинение для Айлин</title>
+    <style>
+        body {
+            background: url('https://source.unsplash.com/1600x900/?romantic,night') no-repeat center center/cover;
+            background-size: cover;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        h1 {
+            font-size: 3rem;
+            animation: fadeIn 3s ease-in-out;
+            margin: 0;
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin: 20px;
+            animation: fadeIn 5s ease-in-out;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: rgba(255, 0, 0, 0.7);
+            color: white;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: rgba(255, 0, 0, 1);
+        }
+
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes heartAnimation {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Прости меня, Айлин…</h1>
+        <p>Извинения от Вели</p>
+        <button class="btn" onclick="showMessage()">Нажми сюда</button>
+        <p id="message" style="display:none; font-size: 1.2rem;">Я очень жалею, что огорчил тебя. Ты важна для меня, и я надеюсь, что ты сможешь простить меня. 💖</p>
+    </div>
+
+    <div class="hearts"></div>
+
+    <audio autoplay loop>
+        <source src="https://example.com/tbili-ne-uhodi.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио.
+    </audio>
+
+    <script>
+        function showMessage() {
+            document.getElementById("message").style.display = "block";
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.innerHTML = "❤️";
+            heart.style.position = "absolute";
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.top = Math.random() * window.innerHeight + "px";
+            heart.style.fontSize = Math.random() * 20 + 20 + "px";
+            heart.style.animation = "heartAnimation 4s linear infinite";
+            heart.style.opacity = Math.random();
+            document.querySelector(".hearts").appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
